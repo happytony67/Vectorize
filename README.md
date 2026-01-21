@@ -44,6 +44,14 @@ A professional, lightweight, offline-first Image → Vector desktop app built wi
 
 ## Build Instructions
 
+### Web Preview
+```
+npm install
+npm run dev
+```
+
+The web build runs the lightweight TypeScript tracing path for offline use when the Tauri runtime is not available.
+
 ### Desktop App
 ```
 npm install

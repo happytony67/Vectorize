@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
+import { vectorizeWeb } from "./vectorizeWeb";
 
 const presets = [
   "Auto",
@@ -31,26 +31,34 @@ export default function App() {
   const [status, setStatus] = useState("Ready");
   const [svg, setSvg] = useState<string | null>(null);
   const [info, setInfo] = useState({ layers: 0, nodes: 0, elapsed: 0 });
+  const [originalUrl, setOriginalUrl] = useState<string | null>(null);
 
   const summary = useMemo(() => {
     return `Layers ${info.layers} · Nodes ${info.nodes} · ${info.elapsed}ms`;
   }, [info]);
 
   const onFile = async (file: File) => {
+    setOriginalUrl(URL.createObjectURL(file));
     const buffer = await file.arrayBuffer();
     setStatus("Vectorizing");
     try {
-      const response = (await invoke("vectorize", {
-        request: {
-          image_bytes: Array.from(new Uint8Array(buffer)),
-          settings: defaultSettings
-        }
-      })) as {
-        svg: string;
-        layers: number;
-        nodes: number;
-        elapsed_ms: number;
-      };
+      let response: { svg: string; layers: number; nodes: number; elapsed_ms: number };
+      if (isTauriEnvironment()) {
+        const { invoke } = await import("@tauri-apps/api/core");
+        response = (await invoke("vectorize", {
+          request: {
+            image_bytes: Array.from(new Uint8Array(buffer)),
+            settings: defaultSettings
+          }
+        })) as {
+          svg: string;
+          layers: number;
+          nodes: number;
+          elapsed_ms: number;
+        };
+      } else {
+        response = await vectorizeWeb(file, defaultSettings);
+      }
       setSvg(response.svg);
       setInfo({
         layers: response.layers,
@@ -136,7 +144,13 @@ export default function App() {
           <div className="preview">
             <div className="preview-pane">
               <div className="preview-title">Original</div>
-              <div className="preview-body">Drop an image to start</div>
+              <div className="preview-body">
+                {originalUrl ? (
+                  <img className="preview-image" src={originalUrl} alt="Original upload" />
+                ) : (
+                  "Drop an image to start"
+                )}
+              </div>
             </div>
             <div className="preview-pane">
               <div className="preview-title">Vector</div>
@@ -154,4 +168,12 @@ export default function App() {
       </footer>
     </div>
   );
+}
+
+function isTauriEnvironment() {
+  const windowAny = window as typeof window & {
+    __TAURI__?: unknown;
+    __TAURI_INTERNALS__?: unknown;
+  };
+  return Boolean(windowAny.__TAURI__ || windowAny.__TAURI_INTERNALS__);
 }
