@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VectorizeSettings",
+  "type": "object",
+  "properties": {
+    "auto_mode": {
+      "type": "string",
+      "enum": ["Auto", "Logo", "Icon", "Illustration", "Sketch", "PhotoEdge"]
+    },
+    "palette_size": { "type": "integer", "minimum": 2, "maximum": 64 },
+    "quantization": { "type": "string", "enum": ["MedianCut", "KMeans", "NeuQuant"] },
+    "smoothing": { "type": "number", "minimum": 0, "maximum": 1 },
+    "edge_sensitivity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "min_area": { "type": "integer", "minimum": 0 },
+    "corner_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+    "simplify_tolerance": { "type": "number", "minimum": 0, "maximum": 5 },
+    "merge_tolerance": { "type": "number", "minimum": 0, "maximum": 1 },
+    "keep_holes": { "type": "boolean" },
+    "remove_background": { "type": "boolean" },
+    "background_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+    "illustrator_friendly": { "type": "boolean" }
+  },
+  "required": [
+    "auto_mode",
+    "palette_size",
+    "quantization",
+    "smoothing",
+    "edge_sensitivity",
+    "min_area",
+    "corner_threshold",
+    "simplify_tolerance",
+    "merge_tolerance",
+    "keep_holes",
+    "remove_background",
+    "background_threshold",
+    "illustrator_friendly"
+  ]
+}

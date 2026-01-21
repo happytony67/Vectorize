@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Auto",
+    "settings": {
+      "auto_mode": "Auto",
+      "palette_size": 8,
+      "quantization": "MedianCut",
+      "smoothing": 0.35,
+      "edge_sensitivity": 0.65,
+      "min_area": 16,
+      "corner_threshold": 0.22,
+      "simplify_tolerance": 0.8,
+      "merge_tolerance": 0.15,
+      "keep_holes": true,
+      "remove_background": true,
+      "background_threshold": 0.06,
+      "illustrator_friendly": true
+    }
+  },
+  {
+    "name": "Logo / Flat colors",
+    "settings": {
+      "auto_mode": "Logo",
+      "palette_size": 6,
+      "quantization": "MedianCut",
+      "smoothing": 0.4,
+      "edge_sensitivity": 0.7,
+      "min_area": 20,
+      "corner_threshold": 0.2,
+      "simplify_tolerance": 0.7,
+      "merge_tolerance": 0.2,
+      "keep_holes": true,
+      "remove_background": true,
+      "background_threshold": 0.08,
+      "illustrator_friendly": true
+    }
+  },
+  {
+    "name": "Icon / UI",
+    "settings": {
+      "auto_mode": "Icon",
+      "palette_size": 12,
+      "quantization": "MedianCut",
+      "smoothing": 0.3,
+      "edge_sensitivity": 0.6,
+      "min_area": 10,
+      "corner_threshold": 0.18,
+      "simplify_tolerance": 0.6,
+      "merge_tolerance": 0.12,
+      "keep_holes": true,
+      "remove_background": true,
+      "background_threshold": 0.06,
+      "illustrator_friendly": true
+    }
+  },
+  {
+    "name": "Illustration",
+    "settings": {
+      "auto_mode": "Illustration",
+      "palette_size": 16,
+      "quantization": "KMeans",
+      "smoothing": 0.45,
+      "edge_sensitivity": 0.55,
+      "min_area": 28,
+      "corner_threshold": 0.24,
+      "simplify_tolerance": 1.0,
+      "merge_tolerance": 0.2,
+      "keep_holes": true,
+      "remove_background": false,
+      "background_threshold": 0.05,
+      "illustrator_friendly": true
+    }
+  },
+  {
+    "name": "Sketch/Scan",
+    "settings": {
+      "auto_mode": "Sketch",
+      "palette_size": 4,
+      "quantization": "MedianCut",
+      "smoothing": 0.2,
+      "edge_sensitivity": 0.8,
+      "min_area": 12,
+      "corner_threshold": 0.3,
+      "simplify_tolerance": 0.5,
+      "merge_tolerance": 0.1,
+      "keep_holes": true,
+      "remove_background": true,
+      "background_threshold": 0.1,
+      "illustrator_friendly": true
+    }
+  },
+  {
+    "name": "Photo (edge-focused)",
+    "settings": {
+      "auto_mode": "PhotoEdge",
+      "palette_size": 24,
+      "quantization": "NeuQuant",
+      "smoothing": 0.5,
+      "edge_sensitivity": 0.4,
+      "min_area": 40,
+      "corner_threshold": 0.3,
+      "simplify_tolerance": 1.2,
+      "merge_tolerance": 0.25,
+      "keep_holes": false,
+      "remove_background": false,
+      "background_threshold": 0.04,
+      "illustrator_friendly": true
+    }
+  }
+]
